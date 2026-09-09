@@ -1,0 +1,204 @@
+#	remote_network_resource_collection = yes - enables centralized and remote resource collection from all the waystations with this building in the network.
+
+# Note that Waystation DO NOT use starbase buildings.
+
+# If you add a new waystation module, also add it to common/inline_scripts/waystation/ai_design.txt
+# and update the weights for all waystation starbase types in common/starbase_types/01_waystation_types.txt
+
+
+@kugel_module_build_time = 360
+@kugel_module_build_cost_alloys = 2000
+@kugel_module_build_cost_influence = 100
+@kugel_module_tier1_storage = 10000
+@kugel_module_tier2_storage = 20000
+@kugel_module_tier3_storage = 30000
+@kugel_module_tier1_OR = 1000
+@kugel_module_tier2_OR = 2000
+@kugel_module_tier3_OR = 3000
+
+# Kugelblitz
+kugelblitz_waystation_module = {
+    #Tier 1
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    NOT = {
+                        has_technology = tech_mega_engineering
+                        #Replace with nomad equivalent
+                        has_technology = giga_tech_tetradimensional_engineering
+                        #Replace with nomad equivalent
+                    }
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 1 icon
+        #Replace with a starbase-esque design that would allow upgraded icon designs
+    }
+    #Tier 2
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    NOT = {
+                        has_technology = giga_tech_tetradimensional_engineering
+                        #Replace with nomad equivalent
+                    }
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 2 icon
+        #Replace with a starbase-esque design that would allow upgraded icon designs
+    }
+    #Tier 3
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 3 icon
+        #Replace with a starbase-esque design
+    }
+    section = "SHIPYARD_STARBASE_SECTION"
+    construction_days = @kugel_module_build_time
+    starbase_type = waystation
+    category = sm_economy_cat
+
+    starbase_limit = {
+        base = 1
+    }
+    empire_limit = {
+        base = 0.1
+        modifier = {
+            add = owner.value:giga_kugel_limit #does this work?
+        }
+    }
+
+    potential = {
+        NOT = { has_global_flag = kugel_disabled }
+        owner? = {
+            has_technology = giga_tech_kugelblitz
+        }
+        is_waystation_starbase = yes
+    }
+    show_in_tech = "giga_tech_kugelblitz"
+    show_tech_unlock_if = {
+        is_nomadic = yes
+    }
+
+    resources = {
+        category = starbase_waystations_modules
+        cost = {
+            alloys = @kugel_module_build_cost_alloys
+            influence = @kugel_module_build_cost_influence
+        }
+        upkeep = {
+            alloys = 15
+            energy = 50
+        }
+    }
+
+    triggered_station_modifier = {
+        potential = {
+            owner? = {
+                NOT = {
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        starbase_stockpile_capacity_add = @kugel_module_tier1_storage
+    }
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                NOT = {
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_module_tier1_OR
+    }
+    triggered_station_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                NOT = {
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        starbase_stockpile_capacity_add = @kugel_module_tier2_storage
+    }
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                NOT = {
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_module_tier2_OR
+    }
+    triggered_station_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                has_technology = giga_tech_tetradimensional_engineering
+                #Replace with nomad equivalent
+            }
+        }
+        starbase_stockpile_capacity_add = @kugel_module_tier3_storage
+    }
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                has_technology = giga_tech_tetradimensional_engineering
+                #Replace with nomad equivalent
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_module_tier3_OR
+    }
+
+    on_finished = {
+        owner? = {
+            change_variable = { which = giga_current_kugel value = 1 }
+        }
+    }
+    on_destroyed = {
+        owner? = {
+            if = {
+                limit = { check_variable = { which = giga_current_kugel value >= 1 } }
+                change_variable = { which = giga_current_kugel value = -1 }
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}

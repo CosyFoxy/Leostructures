@@ -1,0 +1,157 @@
+# If you add a new colony building, also add it to common/inline_scripts/arkship/ai_design.txt
+# and update the weights for all arkship starbase types in common/starbase_types/06_arkship_starbase_types.txt
+
+@kugel_ark_building_build_time = 360
+@kugel_ark_building_build_cost_alloys = 2000
+@kugel_ark_building_build_cost_influence = 100
+@kugel_ark_building_tier1_storage = 10000
+@kugel_ark_building_tier2_storage = 20000
+@kugel_ark_building_tier3_storage = 30000
+
+kugelblitz_arkship_building = {
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    NOT = {
+                        has_technology = tech_mega_engineering
+                        #Replace with nomad equivalent
+                        has_technology = giga_tech_tetradimensional_engineering
+                        #Replace with nomad equivalent
+                    }
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 1 icon
+        #Replace with a starbase-esque design that would allow upgraded icon designs
+    }
+    #Tier 2
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    NOT = {
+                        has_technology = giga_tech_tetradimensional_engineering
+                        #Replace with nomad equivalent
+                    }
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 2 icon
+        #Replace with a starbase-esque design that would allow upgraded icon designs
+    }
+    #Tier 3
+    icon = {
+        trigger = {
+            owner? = {
+                AND = {
+                    has_technology = giga_tech_kugelblitz
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        icon = GFX_kugelblitz_0_build_icon #Tier 3 icon
+        #Replace with a starbase-esque design
+    }
+    starbase_type = arkship
+    construction_days = 360
+    category = sm_economy_cat
+    starbase_limit = {
+        base = 1
+    }
+    empire_limit = {
+        base = 0.1
+        modifier = {
+            add = owner.value:giga_kugel_limit #does this work?
+        }
+    }
+    potential = {
+        NOT = { has_global_flag = kugel_disabled }
+        owner? = {
+            has_technology = giga_tech_kugelblitz
+        }
+        is_arkship_starbase = yes
+    }
+    show_in_tech = "giga_tech_kugelblitz"
+    show_tech_unlock_if = {
+        is_nomadic = yes
+    }
+
+    resources = {
+        category = starbase_arkship_upgrades
+        cost = {
+            alloys = @kugel_ark_building_build_cost_alloys
+            influence = @kugel_ark_building_build_cost_influence
+        }
+        upkeep = {
+            alloys = 15
+            energy = 50
+        }
+    }
+
+
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                NOT = {
+                    has_technology = tech_mega_engineering
+                    #Replace with nomad equivalent
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_ark_building_tier1_OR
+        country_resource_max_add = @kugel_ark_building_tier1_storage
+    }
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                NOT = {
+                    has_technology = giga_tech_tetradimensional_engineering
+                    #Replace with nomad equivalent
+                }
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_ark_building_tier2_OR
+        country_resource_max_add = @kugel_ark_building_tier2_storage
+    }
+    triggered_country_modifier = {
+        potential = {
+            owner? = {
+                has_technology = tech_mega_engineering
+                #Replace with nomad equivalent
+                has_technology = giga_tech_tetradimensional_engineering
+                #Replace with nomad equivalent
+            }
+        }
+        situation_nomad_economy_max_progress_add = @kugel_ark_building_tier3_OR
+        country_resource_max_add = @kugel_ark_building_tier3_storage
+    }
+    on_finished = {
+        owner? = {
+            change_variable = { which = giga_current_kugel value = 1 }
+        }
+    }
+    on_destroyed = {
+        owner? = {
+            if = {
+                limit = { check_variable = { which = giga_current_kugel value >= 1 } }
+                change_variable = { which = giga_current_kugel value = -1 }
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
