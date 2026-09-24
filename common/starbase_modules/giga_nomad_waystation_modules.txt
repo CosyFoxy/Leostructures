@@ -17,58 +17,55 @@
 @kugel_module_tier3_OR = 3000
 
 # Kugelblitz
-kugelblitz_waystation_module = {
+kugelblitz_waystation_module = { #todo double check whether dynamic icon actually works
     #Tier 1
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     NOT = {
                         has_technology = tech_mega_engineering
-                        #Replace with nomad equivalent
                         has_technology = giga_tech_tetradimensional_engineering
-                        #Replace with nomad equivalent
+                        #todo: Replace with nomad equivalent
                     }
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 1 icon
-        #Replace with a starbase-esque design that would allow upgraded icon designs
+        #todo: Replace with a starbase-esque design that would allow upgraded icon designs
     }
     #Tier 2
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     NOT = {
                         has_technology = giga_tech_tetradimensional_engineering
-                        #Replace with nomad equivalent
+                        #todo: Replace with nomad equivalent
                     }
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 2 icon
-        #Replace with a starbase-esque design that would allow upgraded icon designs
+        #todo: Replace with a starbase-esque design that would allow upgraded icon designs
     }
     #Tier 3
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 3 icon
-        #Replace with a starbase-esque design
+        #todo: Replace with a starbase-esque design
     }
     section = "SHIPYARD_STARBASE_SECTION"
     construction_days = @kugel_module_build_time
@@ -88,7 +85,7 @@ kugelblitz_waystation_module = {
     potential = {
         NOT = { has_global_flag = kugel_disabled }
         owner? = {
-            has_technology = giga_tech_kugelblitz
+            has_technology = giga_tech_kugelblitz_nomad
         }
         is_waystation_starbase = yes
     }
@@ -114,9 +111,8 @@ kugelblitz_waystation_module = {
             owner? = {
                 NOT = {
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
@@ -127,9 +123,8 @@ kugelblitz_waystation_module = {
             owner? = {
                 NOT = {
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
@@ -139,10 +134,9 @@ kugelblitz_waystation_module = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 NOT = {
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
@@ -152,10 +146,9 @@ kugelblitz_waystation_module = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 NOT = {
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
@@ -165,9 +158,8 @@ kugelblitz_waystation_module = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 has_technology = giga_tech_tetradimensional_engineering
-                #Replace with nomad equivalent
+                #todo: Replace with nomad equivalent
             }
         }
         starbase_stockpile_capacity_add = @kugel_module_tier3_storage
@@ -176,9 +168,8 @@ kugelblitz_waystation_module = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 has_technology = giga_tech_tetradimensional_engineering
-                #Replace with nomad equivalent
+                #todo: Replace with nomad equivalent
             }
         }
         situation_nomad_economy_max_progress_add = @kugel_module_tier3_OR

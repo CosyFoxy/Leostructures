@@ -7,58 +7,58 @@
 @kugel_ark_building_tier1_storage = 10000
 @kugel_ark_building_tier2_storage = 20000
 @kugel_ark_building_tier3_storage = 30000
+@kugel_ark_building_tier1_OR = 1000
+@kugel_ark_building_tier2_OR = 2000
+@kugel_ark_building_tier3_OR = 3000
 
-kugelblitz_arkship_building = {
+kugelblitz_arkship_building = { #todo double check whether dynamic icon actually works
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     NOT = {
                         has_technology = tech_mega_engineering
-                        #Replace with nomad equivalent
                         has_technology = giga_tech_tetradimensional_engineering
-                        #Replace with nomad equivalent
+                        #todo: Replace with nomad equivalent
                     }
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 1 icon
-        #Replace with a starbase-esque design that would allow upgraded icon designs
+        #todo: Replace with a starbase-esque design that would allow upgraded icon designs
     }
     #Tier 2
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     NOT = {
                         has_technology = giga_tech_tetradimensional_engineering
-                        #Replace with nomad equivalent
+                        #todo: Replace with nomad equivalent
                     }
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 2 icon
-        #Replace with a starbase-esque design that would allow upgraded icon designs
+        #todo: Replace with a starbase-esque design that would allow upgraded icon designs
     }
     #Tier 3
     icon = {
         trigger = {
             owner? = {
                 AND = {
-                    has_technology = giga_tech_kugelblitz
+                    has_technology = giga_tech_kugelblitz_nomad
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
         icon = GFX_kugelblitz_0_build_icon #Tier 3 icon
-        #Replace with a starbase-esque design
+        #todo: Replace with a starbase-esque design
     }
     starbase_type = arkship
     construction_days = 360
@@ -69,17 +69,17 @@ kugelblitz_arkship_building = {
     empire_limit = {
         base = 0.1
         modifier = {
-            add = owner.value:giga_kugel_limit #does this work?
+            add = owner.value:giga_kugel_limit
         }
     }
     potential = {
         NOT = { has_global_flag = kugel_disabled }
         owner? = {
-            has_technology = giga_tech_kugelblitz
+            has_technology = giga_tech_kugelblitz_nomad
         }
         is_arkship_starbase = yes
     }
-    show_in_tech = "giga_tech_kugelblitz"
+    show_in_tech = "giga_tech_kugelblitz_nomad"
     show_tech_unlock_if = {
         is_nomadic = yes
     }
@@ -102,9 +102,8 @@ kugelblitz_arkship_building = {
             owner? = {
                 NOT = {
                     has_technology = tech_mega_engineering
-                    #Replace with nomad equivalent
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo: Replace with nomad equivalent
                 }
             }
         }
@@ -115,10 +114,9 @@ kugelblitz_arkship_building = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 NOT = {
                     has_technology = giga_tech_tetradimensional_engineering
-                    #Replace with nomad equivalent
+                    #todo:Replace with nomad equivalent
                 }
             }
         }
@@ -129,9 +127,8 @@ kugelblitz_arkship_building = {
         potential = {
             owner? = {
                 has_technology = tech_mega_engineering
-                #Replace with nomad equivalent
                 has_technology = giga_tech_tetradimensional_engineering
-                #Replace with nomad equivalent
+                #todo: Replace with nomad equivalent
             }
         }
         situation_nomad_economy_max_progress_add = @kugel_ark_building_tier3_OR
