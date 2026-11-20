@@ -280,6 +280,8 @@ spriteTypes = {
 
 	spriteType = { name = GFX_giga_megalist_info 							textureFile = gfx/interface/icons/megalist_info.dds }
 
+	#CONTRACTS
+	spriteType = { name = "GFX_giga_contract_build_fusion_suppressor_small" 		textureFile = gfx/interface/contracts/giga_contract_build_fusion_suppressor_small.dds }
 	#################
 	### Resources ###
 	#################

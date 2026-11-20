@@ -1178,6 +1178,19 @@ giga_is_orbital_ring = {
 	}
 }
 
+giga_is_fusion_suppressor = {
+	OR = {
+		is_megastructure_type = fusion_suppressor_0
+		is_megastructure_type = fusion_suppressor_1
+		is_megastructure_type = fusion_suppressor_2
+		is_megastructure_type = fusion_suppressor_3
+		is_megastructure_type = fusion_suppressor_4
+		is_megastructure_type = fusion_suppressor_5
+		is_megastructure_type = fusion_suppressor_6a
+		is_megastructure_type = fusion_suppressor_6b
+	}
+}
+
 #################
 # miscellaneous #
 #################
